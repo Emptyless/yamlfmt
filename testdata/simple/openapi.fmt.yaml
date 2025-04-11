@@ -1,0 +1,62 @@
+openapi: "3.0.0"
+info:
+  title: My API
+  description: Description of OpenAPI
+  contact:
+    name: My Name
+    url: example.com
+    email: my.email@example.com
+  version: "1.0"
+paths:
+  "/data":
+    get:
+      description: List Data
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        200:
+          description: Success response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Data"
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Data"
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Data"
+  "/health":
+    get:
+      description: Health check of the API
+      operationId: Health
+      responses:
+        200:
+          description: Success response
+components:
+  schemas:
+    Data:
+      title: Data
+      type: object
+      required: name
+      properties:
+        age:
+          type: integer
+        name:
+          type: string
+x-abc-vendor-extension: b
+x-my-vendor-extension: a

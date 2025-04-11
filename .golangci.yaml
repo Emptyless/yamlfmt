@@ -1,0 +1,73 @@
+# yaml-language-server: $schema=https://golangci-lint.run/jsonschema/golangci.jsonschema.json
+version: "2"
+
+output:
+  formats:
+    tab:
+      path: stdout
+
+linters:
+  default: all
+  disable:
+    - depguard
+    - dupl
+    - dupword
+    - exhaustive
+    - exhaustruct
+    - exptostd
+    - forcetypeassert
+    - funlen
+    - gochecknoglobals
+    - godot
+    - godox
+    - ireturn
+    - lll
+    - musttag
+    - nlreturn
+    - noctx
+    - protogetter
+    - tagliatelle
+    - testpackage
+    - varnamelen
+    - wrapcheck
+    - wsl
+  settings:
+    gocritic:
+      disabled-checks:
+        - paramTypeCombine
+        - unnamedResult
+      enabled-tags:
+        - performance
+        - style
+        - diagnostic
+    govet:
+      disable:
+        - fieldalignment
+      enable-all: true
+    nlreturn:
+      block-size: 3
+
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+
+    rules:
+      - path: .+_test\.go
+        linters:
+          - bodyclose
+          - err113
+          - goconst
+          - ireturn
+          - nilnil
+
+formatters:
+  enable:
+    - gofmt
+    - gofumpt
+    - goimports
+  exclusions:
+    generated: lax

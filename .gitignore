@@ -1,0 +1,7 @@
+# IDE's
+.idea
+.vscode
+
+# Workspaces
+go.work
+go.work.sum
