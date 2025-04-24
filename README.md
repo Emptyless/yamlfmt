@@ -41,6 +41,7 @@ Usage:
 Flags:
       --alphabetical stringArray   path to node to sort alphabetically (e.g. '$.key')
   -f, --file string                path to openapi.yaml file
+  -o, --output string              path to output file
   -h, --help                       help for openapi-fmt
   -q, --quiet count                Decrease the verbosity of the output by one level, -v hides warning logs and -vv will suppress non-fatal errors
       --simple stringArray         path=keys to node to sort (e.g. path = '$.key') with comma separated list of keys
@@ -56,7 +57,7 @@ openapi-fmt --file openapi.yaml
 Overwrite original specification:
 
 ```
-openapi-fmt --file openapi.yaml > openapi.yaml
+openapi-fmt --file openapi.yaml --output openapi.yaml
 ```
 
 Provide additional rules:

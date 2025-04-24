@@ -79,6 +79,11 @@ func NewRootCmd() *cobra.Command {
 				return err
 			}
 
+			outputPath, err := cmd.Flags().GetString("output")
+			if err != nil && outputPath != "" {
+				return os.WriteFile(outputPath, writer.Bytes(), 0644)
+			}
+
 			_, err = cmd.OutOrStdout().Write(writer.Bytes())
 			return err
 		},
@@ -86,6 +91,7 @@ func NewRootCmd() *cobra.Command {
 
 	cmd.Flags().StringP("file", "f", "", "path to openapi.yaml file")
 	_ = cmd.MarkFlagRequired("file")
+	cmd.Flags().StringP("output", "o", "", "path to output file")
 	cmd.Flags().StringArrayP("alphabetical", "", []string{}, "path to node to sort alphabetically (e.g. '$.key')")
 	cmd.Flags().StringArrayP("simple", "", []string{}, "path=keys to node to sort (e.g. path = '$.key') with comma separated list of keys")
 
