@@ -80,7 +80,7 @@ func NewRootCmd() *cobra.Command {
 			}
 
 			outputPath, err := cmd.Flags().GetString("output")
-			if err != nil && outputPath != "" {
+			if err == nil && outputPath != "" {
 				return os.WriteFile(outputPath, writer.Bytes(), 0644)
 			}
 
